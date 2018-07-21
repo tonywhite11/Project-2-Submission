@@ -1,14 +1,8 @@
 
 //Create a list that holds all of your cards
-var cards = ["fa-diamond", "fa-diamond",
-            "fa fa-paper-plane-o", "fa fa-paper-plane-o",
-            "fa-anchor", "fa-anchor",
-            "fa-bolt", "fa-bolt",
-            "fa-cube", "fa-cube",
-            "fa-bomb", "fa-bomb",
-            "fa-leaf", "fa-leaf",
-            "fa-bicycle", "fa-bicycle",
-            ];
+var cardsArray = ["fa-diamond", "fa fa-paper-plane-o","fa-anchor",
+                  "fa-bolt", "fa-cube", "fa-bomb", "fa-leaf", "fa-bicycle"];
+var cards = cardsArray.concat(cardsArray);
 
 // Global variables
 let flippedCards = [];
@@ -129,7 +123,7 @@ function addMove() {
 
 // Checks number of moves
 function checkScore() {
-	if (moves === 17 || moves === 22 || moves === 26) {
+	if (moves === 17 || moves === 23) {
 		loseStar();
 	}
 }
