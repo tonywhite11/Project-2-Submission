@@ -162,3 +162,10 @@ h1 {
 .hide {
     display: none;
 }
+footer {
+    display: flex;
+}
+
+footer ul {
+    list-style: none;
+}
