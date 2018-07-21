@@ -140,7 +140,7 @@ h1 {
     font-size: 2rem;
 }
 
-.modal_stats {
+.modal_scores {
     display: flex;
     flex-direction: column;
     align-items: center;

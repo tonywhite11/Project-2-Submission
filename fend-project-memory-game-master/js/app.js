@@ -190,15 +190,14 @@ function getStars() {
 
 // Writes game data to modal
 function modalGameStats() {
-const timeStat = document.querySelector('.modal_time');
-const clockTime = document.querySelector('.clock').innerHTML;
-const movesStat = document.querySelector('.modal_moves');
-const starsStat = document.querySelector('.modal_stars');
+const timeScore = document.querySelector('.modal_time');
+const clock = document.querySelector('.clock').innerHTML;
+const movesScore = document.querySelector('.modal_moves');
+const starsScore = document.querySelector('.modal_stars');
 const stars = getStars();
-
-timeStat.innerHTML = `Time = ${clockTime}`;
-movesStat.innerHTML = `Moves = ${moves}`;
-starsStat.innerHTML = `Stars = ${stars}`;
+timeScore.innerHTML = `Time = ${clock}`;
+movesScore.innerHTML = `Moves = ${moves}`;
+starsScore.innerHTML = `Stars = ${stars}`;
 }
 
 // Reset game
@@ -208,7 +207,7 @@ function resetGame() {
 	resetStars();
 	initGame();
 	resetCards();
-	resetMatchedCards();
+	resetMatched();
 	//location.reload();  <!--Not recommended to use-->
 }
 
@@ -258,7 +257,7 @@ function resetCards() {
 }
 
 // Resets matched cards to 0
-function resetMatchedCards() {
+function resetMatched() {
 	matched = 0;
 }
 
