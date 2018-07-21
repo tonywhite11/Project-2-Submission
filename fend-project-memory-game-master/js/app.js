@@ -107,7 +107,7 @@ function checkForMatch() {
         	flipCard(flippedCards[0]);
 		    flipCard(flippedCards[1]);
 		    flippedCards = [];
-        }, 500);
+        }, 1000);
     }
 }
 
