@@ -11,13 +11,13 @@ var cards = ["fa-diamond", "fa-diamond",
             ];
 
 // Global variables
-const deck = document.querySelector('.deck');
-let toggledCards = [];
+let flippedCards = [];
 let moves = 0;
 let time = 0;
 let matched = 0;
 let clockOff = true;
 let clock;
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -40,29 +40,31 @@ function generateCard(card) {
 }
 
 // Initializes/Starts game
+const deck = document.querySelector('.deck');
 function initGame() {
 var deck = document.querySelector(".deck");
    var cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
    });
-    deck.innerHTML = cardHTML.join("");
+        deck.innerHTML = cardHTML.join("");
 }
 initGame()
 
 // Adds event listener to cards
 deck.addEventListener('click', event=> {
-    const clickTarget = event.target;
-    if (validClick(clickTarget)) {
+    const clickedCard = event.target;
+    if (validClick(clickedCard)) {
     	if (clockOff) {
     		startClock();
     		clockOff = false;
     	}
-        toggleCard(clickTarget);
-        addToggleCard(clickTarget);
-        if (toggledCards.length === 2) {       	
-        	checkForMatch(clickTarget);
-        	addMove();
-        	checkScore();
+        flipCard(clickedCard);
+        addFlippedCard(clickedCard);
+        if (flippedCards.length === 2) { 
+            addMove();
+            checkScore();       	
+        	checkForMatch(clickedCard);    	
+        	      	
         }
     }
 });
@@ -78,63 +80,62 @@ document.querySelector('.restart').addEventListener('click', resetGame);
 
 
 // Flips card when clicked
-function toggleCard(card) {
+function flipCard(card) {
 	 card.classList.toggle('open');
      card.classList.toggle('show');
 }
 
-// Add toggled card to clickTarget list
-function addToggleCard(clickTarget) {
-	toggledCards.push(clickTarget);
+// Add toggled card to clickedCard list
+function addFlippedCard(clickedCard) {
+	flippedCards.push(clickedCard);
 }
 
 // Checks if cards are a match and closes them if not
 function checkForMatch() {
-	if (toggledCards[0].firstElementChild.className === 
-		toggledCards[1].firstElementChild.className) {
-		toggledCards[0].classList.toggle('match');
-		toggledCards[1].classList.toggle('match');
-		toggledCards = [];
+	if (flippedCards[0].firstElementChild.className === 
+		flippedCards[1].firstElementChild.className) {
+		flippedCards[0].classList.toggle('match');
+		flippedCards[1].classList.toggle('match');
+		flippedCards = [];
 		matched++;
-		const TOTAL_PAIRS = 8;
-		if (matched === TOTAL_PAIRS) {
+		const matchedCards = cards.length / 2;
+		if (matched === matchedCards) {
 			gameOver();
 		}
 	} else {
         setTimeout(() => {
-        	toggleCard(toggledCards[0]);
-		    toggleCard(toggledCards[1]);
-		    toggledCards = [];
-        }, 1000);
+        	flipCard(flippedCards[0]);
+		    flipCard(flippedCards[1]);
+		    flippedCards = [];
+        }, 500);
     }
 }
 
 
 // Determines whether the card can be clicked
-function validClick(clickTarget) {
+function validClick(clickedCard) {
 	return (
-		clickTarget.classList.contains('card') &&
-        !clickTarget.classList.contains('match') && 
-    	toggledCards.length < 2 &&
-    	!toggledCards.includes(clickTarget));
+		clickedCard.classList.contains('card') &&
+        !clickedCard.classList.contains('match') && 
+    	flippedCards.length < 2 &&
+    	!flippedCards.includes(clickedCard));
 }
 
 // Adds move to move counter
 function addMove() {
 	moves++;
-	const movesText = document.querySelector('.moves');
-	movesText.innerHTML = moves;
+	document.querySelector('.moves').innerHTML = moves;
 }
 
 // Checks number of moves
 function checkScore() {
-	if (moves === 16 || moves === 24) {
-		hideStar();
+	if (moves === 17 || moves === 22 || moves === 26) {
+		loseStar();
 	}
 }
 
 // Hides star
-function hideStar() {
+function loseStar() {
 	const starList = document.querySelectorAll('.stars li');
 	for (star of starList) {
 		if (star.style.display !== 'none') {
@@ -148,12 +149,12 @@ function hideStar() {
 function startClock() {
 	 clock = setInterval(() => {
 		time++;
-		displayTime();
+		formatTime();
 	}, 1000);
 }
 
 // Clock display
-function displayTime() {
+function formatTime() {
 	const clock = document.querySelector('.clock');
 	clock.innerHTML = time;
 	const minutes = Math.floor(time / 60);
@@ -191,9 +192,9 @@ function getStars() {
 // Writes game data to modal
 function modalGameStats() {
 const timeScore = document.querySelector('.modal_time');
-const clock = document.querySelector('.clock').innerHTML;
 const movesScore = document.querySelector('.modal_moves');
 const starsScore = document.querySelector('.modal_stars');
+const clock = document.querySelector('.clock').innerHTML;
 const stars = getStars();
 timeScore.innerHTML = `Time = ${clock}`;
 movesScore.innerHTML = `Moves = ${moves}`;
@@ -216,7 +217,7 @@ function resetTime() {
 	stopClock();
 	clockOff = true;
 	time = 0;
-	displayTime();
+	formatTime();
 }
 
 // Resets moves
@@ -263,7 +264,7 @@ function resetMatched() {
 
 
 
-// Alternate Timer
+// Alternate Timer for later use
 
 /*let hour = 0;
 let minutes = 0;
