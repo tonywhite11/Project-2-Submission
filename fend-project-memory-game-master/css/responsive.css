@@ -1,0 +1,43 @@
+
+@media screen and (max-width: 480px) {
+  .deck {
+      max-width: 100%;
+        min-height: 460px;
+    padding: 10px;
+    margin: 0 0 3em;
+
+  }
+
+  .deck .card {
+    height: 70px;
+    width: 70px;
+    margin: auto;
+  }
+
+  .score-panel .restart {
+    margin-right: 15px; 
+    }
+
+    .score-panel .stars {
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 15px;
+  }
+}
+
+@media screen and (min-width: 760px) {
+
+.deck {
+    max-width: 660px;
+    min-height: 800px;
+   }
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+  }
+
+ .container {
+    padding-top: 3em;
+  }
+}

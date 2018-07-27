@@ -38,7 +38,7 @@ h1 {
  */
 
 .deck {
-    width: 660px;
+    max-width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
     padding: 32px;
@@ -63,6 +63,8 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    min-width: 48px;
+    min-height: 48px;
 }
 
 .deck .card.open {
@@ -169,4 +171,8 @@ footer {
 
 footer ul {
     list-style: none;
+}
+img, embed,
+object, video {
+    max-width: 100%;
 }

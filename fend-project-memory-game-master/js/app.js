@@ -1,8 +1,8 @@
 
 //Create a list that holds all of your cards
-var cardsArray = ["fa-diamond", "fa fa-paper-plane-o","fa-anchor",
+let cardsArray = ["fa-diamond", "fa fa-paper-plane-o","fa-anchor",
                   "fa-bolt", "fa-cube", "fa-bomb", "fa-leaf", "fa-bicycle"];
-var cards = cardsArray.concat(cardsArray);
+let cards = cardsArray.concat(cardsArray);
 
 // Global variables
 let flippedCards = [];
@@ -15,7 +15,7 @@ let clock;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -36,8 +36,8 @@ function generateCard(card) {
 // Initializes/Starts game
 const deck = document.querySelector('.deck');
 function initGame() {
-var deck = document.querySelector(".deck");
-   var cardHTML = shuffle(cards).map(function(card) {
+let deck = document.querySelector(".deck");
+   let cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
    });
         deck.innerHTML = cardHTML.join("");
@@ -67,8 +67,10 @@ deck.addEventListener('click', event=> {
 document.querySelector('.modal_cancel').addEventListener('click', () => {
 	showModal();
 });
+
 // Replay button evt listener for modal
 document.querySelector('.modal_replay').addEventListener('click', replayGame);
+
 // Restart evt listener for modal
 document.querySelector('.restart').addEventListener('click', resetGame);
 
