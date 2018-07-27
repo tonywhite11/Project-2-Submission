@@ -20,6 +20,10 @@ all cards are matched.
 **Replay game.** The player can restart the game by clicking the reset button or by clicking the replay button on the win/game 
 over screen.
 
+## Dependencies
+
+This project was built using libraries/dependencies from **Font-Awesome, JQuery, ES6 and Bootstrap**.
+
 ## Contributing
 
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
