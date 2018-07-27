@@ -17,8 +17,7 @@ all cards are matched.
 
 **Game over.** The game is over when all cards have been matched.
 
-**Replay game.** The player can restart the game by clicking the reset button or by clicking the replay button on the win/game 
-over screen.
+**Replay game.** The player can restart the game by clicking the reset button or by clicking the replay button on the win/game-over screen.
 
 ## Dependencies
 
